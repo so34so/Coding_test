@@ -1,26 +1,32 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int total = 0;  //검은 영역의 넓이
-        int n = Integer.parseInt(br.readLine());  //색종이 개수
-        boolean[][] arr = new boolean[101][101];  //도화지
-        for (int i = 0; i < n; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-            //(x,y)부터 (x+9, y+9)까지의 영역을 하나씩 체크한 후 총 넓이에 더해준다
-            for (int j = x; j < x+10; j++) {
-                for (int k = y; k < y+10; k++) {
-                    if (!arr[j][k]) {
-                        arr[j][k] = true;
-                        total++;
-                    }
-                }
-            }
-        }
-        System.out.print(total);
-    }
+	public static void main(String[] args) throws NumberFormatException, IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		int[][] map = new int[100][100];
+		int cnt = 0;
+		for(int tc=0;tc<N;tc++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken())-1;
+			int b = Integer.parseInt(st.nextToken())-1;
+			for(int i=a;i<a+10;i++) {
+				for(int j=b;j<b+10;j++) {
+					map[i][j] = 1;
+				}
+			}
+		}
+		for(int i=0;i<100;i++) {
+			for(int j=0;j<100;j++) {
+				if(map[i][j]==1) {
+					cnt++;
+				}
+			}
+		}
+		System.out.println(cnt);
+		
+	}
 }
