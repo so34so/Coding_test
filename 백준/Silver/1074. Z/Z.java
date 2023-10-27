@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 public class Main {
 	static int N,r,c,size,cnt;
