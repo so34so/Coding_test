@@ -7,42 +7,51 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		int T = Integer.parseInt(br.readLine());
-		
-		for(int tc = 0; tc<T;tc++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			int N = Integer.parseInt(st.nextToken());
-			int M = Integer.parseInt(st.nextToken());
-			int cnt = 0;
-			Queue<int[]> q = new LinkedList<>();
-			st = new StringTokenizer(br.readLine());
-			for(int i=0;i<N;i++) {
-				int a = Integer.parseInt(st.nextToken());
-				q.offer(new int[] {i,a});
-			}
-			
-			while(true) {
-				int now[] = q.poll();
-				boolean flag = true;
-				
-				for(int que[]:q) {
-					if(que[1]>now[1]) {
-						flag = false;
-						break;
-					}
-				}
-				if(flag) {
-					cnt++;
-					if(now[0]==M)break;
-				}else {
-					q.offer(now);
-				}
-			}
-			System.out.println(cnt);
-		}
-		
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int T = Integer.parseInt(br.readLine());
+
+        while(T-- > 0){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int N = Integer.parseInt(st.nextToken());
+            int M = Integer.parseInt(st.nextToken());
+
+            LinkedList<int[]> que = new LinkedList<>();
+            st = new StringTokenizer(br.readLine());
+
+            for(int i=0;i<N;i++){
+                que.offer(new int[] {i,Integer.parseInt(st.nextToken())});
+            }
+
+            int cnt = 0;
+
+            while(!que.isEmpty()){
+                int[] front = que.poll();
+                boolean isMax = true;
+
+                for(int i=0;i<que.size();i++){
+                    if(front[1] < que.get(i)[1]){
+                        que.offer(front);
+                        for(int j=0;j<i;j++){
+                            que.offer(que.poll());
+                        }
+                        isMax = false;
+                        break;
+                    }
+                }
+
+                if(isMax == false){
+                    continue;
+                }
+
+                cnt++;
+                if(front[0] == M){
+                    break;
+                }
+            }
+            sb.append(cnt).append("\n");
+        }
+        System.out.println(sb);
+    }
 }
