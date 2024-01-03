@@ -1,25 +1,26 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
-	public static void main(String[] args) throws IOException{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int A = Integer.parseInt(br.readLine());
-		int B = Integer.parseInt(br.readLine());
-		int C = Integer.parseInt(br.readLine());
-		
-		String str = String.valueOf(A*B*C);
-		
-		int[] arr =new int[str.length()];
-		int[] num = new int[10];
-		for(int i=0;i<arr.length;i++) {
-			arr[i] = str.charAt(i)-'0';
-			num[arr[i]] += 1;
-		}
-		for(int i=0;i<num.length;i++) {
-			System.out.println(num[i]);
-		}
-	}
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int a = Integer.parseInt(br.readLine());
+        int b = Integer.parseInt(br.readLine());
+        int c = Integer.parseInt(br.readLine());
+        int num = a*b*c;
+        int[] arr = new int[10];
+        while(num>0){
+            int x = num%10;
+            num = num/10;
+            arr[x]++;
+        }
+        for(int i=0;i<arr.length;i++){
+            sb.append(arr[i]).append("\n");
+        }
+        System.out.print(sb);
+    }
 }
