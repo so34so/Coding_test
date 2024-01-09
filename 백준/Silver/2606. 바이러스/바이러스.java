@@ -31,7 +31,7 @@ public class Main {
 		check[start] = true;
 		count++;
 		
-		for(int i=0;i<=N;i++) {
+		for(int i=1;i<=N;i++) {
 			if(arr[start][i] == 1 && !check[i]) {
 				dfs(i);
 			}
