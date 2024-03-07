@@ -12,15 +12,7 @@ public class Main {
 
       if(num==1){
         sb.append("0");
-      }else if(num % 2 ==0){
-        for(int j=1;j<=num;j++){
-          if(j==1 || j == num){
-            sb.append("1");
-          }else{
-            sb.append("2");
-          }
-        }
-      }else if(num % 2 !=0){
+      }else{
         for(int j=1;j<=num;j++){
           if(j==1 || j == num){
             sb.append("1");
@@ -33,6 +25,5 @@ public class Main {
     }
     System.out.println(sb);
   }
-
 
 }
