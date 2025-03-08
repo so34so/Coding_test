@@ -1,11 +1,11 @@
 class Solution {
     public String solution(int age) {
         String answer = "";
-        String age2 = "abcdefghij";
-        String[] ageArr = String.valueOf(age).split("");
+        String[] ageArr = new String[]{"a","b","c","d","e","f","g","h","i","j"};
         
-        for(int i=0; i<ageArr.length; i++){
-            answer += age2.charAt(Integer.valueOf(ageArr[i]));
+        while(age>0){
+            answer = ageArr[age % 10] + answer;
+            age /= 10;
         }
         
         return answer;
